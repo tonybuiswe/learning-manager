@@ -5,27 +5,32 @@ POST http://localhost:3456/api/auth/register
 Content-Type: application/json
 
 {
-  "username": "Tony Bui 123455",
+  "username": "Testing User",
   "password": "Zxcasdqwe12"
 }
-
 
 ###
 POST http://localhost:3456/api/auth/login
 Content-Type: application/json
 
 {
-  "username": "Tony Bui 11111",
+  "username": "Testing User",
   "password": "Zxcasdqwe12"
 }
 
 ###
-POST http://localhost:3456/api/post
+POST http://localhost:3456/api/posts
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2ZDQ1NTY3MmU0MmM2MmZiYWM4Y2YiLCJpYXQiOjE2ODM0MTI0NjZ9.cq3PARsFnXjlCux0nsI8eZIgu7OzW-IyQlbbwVcHF70
 
 {
-  "title": "my first post",
+  "title": "Type Script",
   "description": "abc",
-  "url": "google.com",
-  "status": "TO LEARN"
+  "url": "vtv.com",
+  "status": "LEARNING"
 }
+
+###
+GET http://localhost:3456/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2ZDQ1NTY3MmU0MmM2MmZiYWM4Y2YiLCJpYXQiOjE2ODM0MTI0NjZ9.cq3PARsFnXjlCux0nsI8eZIgu7OzW-IyQlbbwVcHF70

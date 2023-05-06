@@ -7,7 +7,7 @@ const verifyToken = (req, res, next) => {
   if (!token) {
     res
       .status(401)
-      .json({ success: false, message: "Success token not found" });
+      .json({ success: false, message: "Token not found" });
   }
 
   try {
@@ -19,6 +19,5 @@ const verifyToken = (req, res, next) => {
     res.status(403).json({success: false,message:"Invalid token"})
   }
 };
-
 
 module.exports = verifyToken

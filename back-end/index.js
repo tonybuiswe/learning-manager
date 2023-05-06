@@ -26,8 +26,7 @@ const app = express();
 app.use(express.json());
 app.get("/", (req, res) => res.send("Hello World"));
 app.use("/api/auth", authRouter);
-app.use("/api/post", postRouter);
-console.log("asd");
+app.use("/api/posts", postRouter);
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 // module.exports = client

@@ -1,14 +1,15 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
 
-const PostModel = require("back-end/models/PostModel");
-const verifyToken = require("back-end/middleware/authMiddleware");
+const UserModel = require("../models/UserModel");
+const PostModel = require("../models/PostModel");
+const verifyToken = require("../middleware/authMiddleware");
 
 // @route POST api/posts
 // @desc Create post
 // @access Private
-router.post("/", verifyToken,async (req,res) => {
-  const { title, description, url, status, user } = req.body;
+router.post("/", verifyToken, async (req, res) => {
+  const { title, description, url, status, userId } = req.body;
 
   if (!title)
     return res
@@ -17,20 +18,35 @@ router.post("/", verifyToken,async (req,res) => {
 
   try {
     const newPost = new PostModel({
+      user: req.userId,
       title,
       description,
       url: url.startsWith("https://") ? url : `https:${url}`,
-      status: status || 'TO LEARN',
-      user: '6455a1ff59213e018d4d871a'
+      status: status || "TO LEARN",
     });
 
-    await newPost.save()
-    res.json({success: 'true', message: 'Post successfully', post: newPost})
-
+    await newPost.save();
+    res.json({ success: "true", message: "Post successfully", post: newPost });
   } catch (error) {
-    console.log(e)
-    res.status(500).json({ success: false, message: 'Internal server error' })
+    console.log(e);
+    return res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
 
-module.exports = router
+// @route GET api/posts
+// @desc Get posts
+// @access Private
+router.get("/", verifyToken, async (req, res) => {
+  try {
+    const posts = await PostModel.find({ user: req.userId }).populate({
+      path: 'user',
+      select: '-password'
+    });
+    res.json({ success: true, posts });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: "Internal server error" });
+
+  }
+});
+module.exports = router;
