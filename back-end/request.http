@@ -1,0 +1,31 @@
+GET http://localhost:3456
+
+###
+POST http://localhost:3456/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "Tony Bui 123455",
+  "password": "Zxcasdqwe12"
+}
+
+
+###
+POST http://localhost:3456/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "Tony Bui 11111",
+  "password": "Zxcasdqwe12"
+}
+
+###
+POST http://localhost:3456/api/post
+Content-Type: application/json
+
+{
+  "title": "my first post",
+  "description": "abc",
+  "url": "google.com",
+  "status": "TO LEARN"
+}
