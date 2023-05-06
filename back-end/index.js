@@ -1,20 +1,17 @@
+require('dotenv').config()
 const express = require('express')
 const { MongoClient, ServerApiVersion } = require('mongodb')
-const app = express()
+const authRouter = require('./routes/authRoute')
+const { default: mongoose } = require('mongoose')
 
-const uri = 'mongodb+srv://tbuivdev:Zxcasdqwe12@learning-manager.swd6ctg.mongodb.net/?retryWrites=true&w=majority'
-
-const client = new MongoClient(uri, {
-	serverApi: {
-		version: ServerApiVersion.v1,
-		strict: true,
-		deprecationErrors: true,
-	},
-})
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@learning-manager.swd6ctg.mongodb.net/?retryWrites=true&w=majority`
 
 const connectDB = async () => {
 	try {
-		await client.connect()
+		// await client.connect()
+		await mongoose.connect(uri, {
+			dbName: 'my_db',
+		})
 		console.log('Mongo DB connected')
 	} catch (e) {
 		console.log(e)
@@ -23,7 +20,11 @@ const connectDB = async () => {
 }
 
 connectDB()
-app.get('/', (req, res) => res.send('Hello World'))
 const PORT = 3456
-
+const app = express()
+app.use(express.json())
+app.get('/', (req, res) => res.send('Hello World'))
+app.use('/api/auth', authRouter)
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+
+// module.exports = client
