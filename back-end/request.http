@@ -5,7 +5,7 @@ POST http://localhost:3456/api/auth/register
 Content-Type: application/json
 
 {
-  "username": "Testing User",
+  "username": "Testing User 6",
   "password": "Zxcasdqwe12"
 }
 
@@ -24,13 +24,29 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2ZDQ1NTY3MmU0MmM2MmZiYWM4Y2YiLCJpYXQiOjE2ODM0MTI0NjZ9.cq3PARsFnXjlCux0nsI8eZIgu7OzW-IyQlbbwVcHF70
 
 {
-  "title": "Type Script",
+  "title": "new one",
   "description": "abc",
-  "url": "vtv.com",
+  "url": "google.com",
   "status": "LEARNING"
 }
 
 ###
 GET http://localhost:3456/api/posts
+Content-Type: application/json
+
+###
+PUT http://localhost:3456/api/posts/6459b2399b484b154a2b3ea3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2ZDQ1NTY3MmU0MmM2MmZiYWM4Y2YiLCJpYXQiOjE2ODM0MTI0NjZ9.cq3PARsFnXjlCux0nsI8eZIgu7OzW-IyQlbbwVcHF70
+
+{
+  "title": "lesson 2",
+  "description" : "updated lesson",
+  "url": "tony.com",
+  "status": "learning"
+}
+
+###
+DELETE http://localhost:3456/api/posts/6459b2399b484b154a2b3ea3
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2ZDQ1NTY3MmU0MmM2MmZiYWM4Y2YiLCJpYXQiOjE2ODM0MTI0NjZ9.cq3PARsFnXjlCux0nsI8eZIgu7OzW-IyQlbbwVcHF70

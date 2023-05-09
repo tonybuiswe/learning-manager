@@ -9,7 +9,6 @@ const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}
 
 const connectDB = async () => {
   try {
-    // await client.connect()
     await mongoose.connect(uri, {
       dbName: "my_db",
     });
@@ -28,5 +27,3 @@ app.get("/", (req, res) => res.send("Hello World"));
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-
-// module.exports = client
