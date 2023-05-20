@@ -4,6 +4,7 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 const authRouter = require("./routes/authRoute");
 const postRouter = require("./routes/postRoute");
 const { default: mongoose } = require("mongoose");
+const cors = require("cors");
 
 const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@learning-manager.swd6ctg.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -23,6 +24,7 @@ connectDB();
 const PORT = 3456;
 const app = express();
 app.use(express.json());
+app.use(cors())
 app.get("/", (req, res) => res.send("Hello World"));
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);

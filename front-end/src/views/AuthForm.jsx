@@ -1,24 +1,36 @@
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import Login from "../components/auth/Login";
-import Register from "../components/auth/Register";
-import {AuthContext} from "../contexts/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
-export const Auth = ({ isRegister }) => {
-
-  const {loginUser} = useContext(AuthContext)
+export const AuthForm = ({ isRegister }) => {
+  const { loginUser } = useContext(AuthContext);
   const [authValue, setAuthValue] = useState({
     username: "",
     password: "",
     confirmedPassword: "",
   });
 
+  const navigate = useNavigate();
+
   const { username, password, confirmedPassword } = authValue;
 
   const onAuthChange = (event) => {
     setAuthValue({ ...authValue, [event.target.name]: event.target.value });
-    console.log(authValue);
+  };
+
+  const login = async (event) => {
+    event.preventDefault();
+    try {
+      const { confirmedPassword, ...loginFormValue } = authValue;
+      const loginData = await loginUser(loginFormValue);
+      if (loginData.success) {
+        navigate("/dashboard");
+      } else {
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -27,15 +39,15 @@ export const Auth = ({ isRegister }) => {
         <div className="landing-inner">
           <h1>Learning Tracker</h1>
           <h4>Keep track of you learning process</h4>
-          <Form >
+          <Form>
             <Form.Group className="my-4">
               <Form.Control
                 type="text"
                 placeholder="Username"
                 name="username"
-                required
                 value={username}
                 onChange={onAuthChange}
+                required
               />
             </Form.Group>
             <Form.Group className="my-4">
@@ -43,9 +55,9 @@ export const Auth = ({ isRegister }) => {
                 type="password"
                 placeholder="Password"
                 name="password"
-                required
                 value={password}
                 onChange={onAuthChange}
+                required
               />
             </Form.Group>
             {isRegister && (
@@ -54,14 +66,14 @@ export const Auth = ({ isRegister }) => {
                   type="password"
                   placeholder="Confirm Password"
                   name="confirmedPassword"
-                  required
                   value={confirmedPassword}
                   onChange={onAuthChange}
+                  required
                 />
               </Form.Group>
             )}
 
-            <Button variant="success" type="submit">
+            <Button variant="success" type="submit" onClick={login}>
               {isRegister ? "Register" : "Login"}
             </Button>
           </Form>

@@ -5,6 +5,24 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 const UserModel = require("../models/UserModel");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
+const verifyToken = require("../middleware/authMiddleware");
+
+// @route GET api/auth
+// @desc Check if user is logged in
+// @access Public
+router.get("/", verifyToken, async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.userId).select("-password");
+    if (!user)
+      return res.status(400).json({
+        success: false,
+        message: "User not found",
+      });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
 
 // @route POST api/auth/register
 // @desc Register user
@@ -62,11 +80,15 @@ router.post("/login", async function (req, res) {
   const { username, password } = req.body;
 
   if (!username) {
-    return res.status(400).json({ success: false, message: "User name is required" });
+    return res
+      .status(400)
+      .json({ success: false, message: "User name is required" });
   }
 
   if (!password) {
-    return res.status(400).json({ success: false, message: "Password is required" });
+    return res
+      .status(400)
+      .json({ success: false, message: "Password is required" });
   }
 
   try {
@@ -82,10 +104,16 @@ router.post("/login", async function (req, res) {
       { userId: user._id },
       process.env.ACCESS_TOKEN_SECRET
     );
-    return res.json({ success: true, message: "Logged in successfully", accessToken });
+    return res.json({
+      success: true,
+      message: "Logged in successfully",
+      accessToken,
+    });
   } catch (e) {
     console.log(e);
-    return res.status(500).json({ success: false, message: "Internal server error" });
+    return res
+      .status(500)
+      .json({ success: false, message: "Internal server error" });
   }
 });
 

@@ -5,9 +5,7 @@ const verifyToken = (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
 
   if (!token) {
-    res
-      .status(401)
-      .json({ success: false, message: "Token not found" });
+    res.status(401).json({ success: false, message: "Token not found" });
   }
 
   try {
@@ -16,8 +14,8 @@ const verifyToken = (req, res, next) => {
     next();
   } catch (e) {
     console.log(e);
-    res.status(403).json({success: false,message:"Invalid token"})
+    res.status(403).json({ success: false, message: "Invalid token" });
   }
 };
 
-module.exports = verifyToken
+module.exports = verifyToken;

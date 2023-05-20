@@ -1,8 +1,9 @@
 import "./App.css";
 import { AuthContextProvider } from "./contexts/AuthContext";
-import { Auth } from "./views/Auth";
+import { AuthForm } from "./views/AuthForm";
 import Landing from "./components/layout/Landing";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { DashBoard } from "./views/DashBoard";
 
 function App() {
   return (
@@ -10,8 +11,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Auth />} />
-          <Route path="/register" element={<Auth isRegister />} />
+          <Route path="/login" element={<AuthForm />} />
+          <Route path="/register" element={<AuthForm isRegister />} />
+          <Route path="/dashboard" element={<DashBoard />} />
         </Routes>
       </Router>
     </AuthContextProvider>
