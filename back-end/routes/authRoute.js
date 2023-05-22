@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { MongoClient, ServerApiVersion } = require("mongodb");
+// const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const UserModel = require("../models/UserModel");
 const argon2 = require("argon2");
@@ -18,6 +18,8 @@ router.get("/", verifyToken, async (req, res) => {
         success: false,
         message: "User not found",
       });
+
+    res.json({ success: true, user });
   } catch (e) {
     console.log(e);
     res.status(500).json({ success: false, message: "Internal server error" });

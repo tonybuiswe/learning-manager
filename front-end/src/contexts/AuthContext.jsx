@@ -13,8 +13,7 @@ export const AuthContextProvider = ({ children }) => {
     user: null,
   });
 
-  // Authenticate user
-  const loadUser = async () => {
+  const authenticateUser = async () => {
     if (localStorage[LOGIN_TOKEN]) {
       setAuthToken(localStorage[LOGIN_TOKEN]);
     }
@@ -47,7 +46,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    loadUser();
+    authenticateUser();
   }, []);
   //   Login
   const loginUser = async (userForm) => {
@@ -56,6 +55,7 @@ export const AuthContextProvider = ({ children }) => {
       if (response.data.success) {
         localStorage.setItem(LOGIN_TOKEN, response.data.accessToken);
       }
+      await authenticateUser();
       return response.data;
     } catch (e) {
       if (e.response.data) return e.response.data;
