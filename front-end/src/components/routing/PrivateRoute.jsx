@@ -1,10 +1,10 @@
-import { useContext, useEffect } from "react";
-import { Spinner } from "react-bootstrap";
-import { Outlet, Route, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+import NavBarMenu from "../layout/NavBarMenu";
 
 function PrivateRoute() {
-  const { authState } = useContext(AuthContext);
+  const { authState } = useAuth();
   const { isAuthenticated } = authState;
   const navigate = useNavigate();
 
@@ -14,7 +14,12 @@ function PrivateRoute() {
     }
   }, [isAuthenticated]);
 
-  return <Outlet />;
+  return (
+    <>
+      <NavBarMenu />
+      <Outlet />
+    </>
+  );
 }
 
 export default PrivateRoute;
