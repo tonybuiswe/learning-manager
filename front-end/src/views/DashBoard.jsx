@@ -12,9 +12,9 @@ export function DashBoard() {
 
   useEffect(() => {
     getPosts();
-  }, [postsLoading]);
+  }, []);
 
-  if (postsLoading) {
+  if (!user || postsLoading) {
     return (
       <div className="spinner-container">
         <Spinner animation="border" variant="info" />
@@ -22,15 +22,17 @@ export function DashBoard() {
     );
   }
 
-  if (!posts) {
+  if (posts.length === 0) {
     return (
-      <Card className="tet-center mx-5 my-5">
+      <Card className="text-center mx-5 my-5">
         <Card.Header as="h1"> Hi {user.username}</Card.Header>
-        <Card.Title>Welcome to {`{appName}`}</Card.Title>
-        <Card.Text>
-          Click the button below to track your first skill to learn
-        </Card.Text>
-        <Button></Button>
+        <Card.Body>
+          <Card.Title>Welcome to {`{appName}`}</Card.Title>
+          <Card.Text>
+            Click the button below to track your first skill to learn
+          </Card.Text>
+          <Button variant="primary"> Start Learning </Button>
+        </Card.Body>
       </Card>
     );
   }

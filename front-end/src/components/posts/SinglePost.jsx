@@ -1,5 +1,6 @@
 import { Badge, Card, Col, Row } from "react-bootstrap";
 import React from "react";
+import { ActionButtons } from "./ActionButtons";
 
 export const SinglePost = ({ post }) => {
   const { _id, status, title, description, url } = post;
@@ -22,7 +23,7 @@ export const SinglePost = ({ post }) => {
               </Badge>
             </Col>
             <Col className="text-right">
-              {/*<ActionButton url={url} _id={_id} />*/}
+              <ActionButtons url={url} _id={_id} />
             </Col>
           </Row>
         </Card.Title>
