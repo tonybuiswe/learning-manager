@@ -4,3 +4,8 @@ export const apiUrl =
     : "placeholder";
 
 export const LOGIN_TOKEN = "LOGIN_TOKEN";
+
+export const PostFetched = {
+  SUCCESS: "SUCCESS",
+  FAIL: "FAIL",
+};

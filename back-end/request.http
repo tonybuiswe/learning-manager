@@ -2,7 +2,7 @@ GET http://localhost:3456
 
 ###
 GET http://localhost:3456/api/auth
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2ZDQ1NTY3MmU0MmM2MmZiYWM4Y2YiLCJpYXQiOjE2ODM0MTI0NjZ9.cq3PARsFnXjlCux0nsI8eZIgu7OzW-IyQlbbwVcHF70
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU3ZmQwNDQxMDQ4NjczNzIwODczNzYiLCJpYXQiOjE2ODUxNTYyMDd9.0JMs0RK4dRdJpHDMG1nePAW_dc1b1HCo4VmltxVun6A
 
 ###
 POST http://localhost:3456/api/auth/register
@@ -25,23 +25,24 @@ Content-Type: application/json
 ###
 POST http://localhost:3456/api/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2ZDQ1NTY3MmU0MmM2MmZiYWM4Y2YiLCJpYXQiOjE2ODM0MTI0NjZ9.cq3PARsFnXjlCux0nsI8eZIgu7OzW-IyQlbbwVcHF70
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU3ZmQwNDQxMDQ4NjczNzIwODczNzYiLCJpYXQiOjE2ODUxNTYyMDd9.0JMs0RK4dRdJpHDMG1nePAW_dc1b1HCo4VmltxVun6A
 
 {
-  "title": "new one",
-  "description": "abc",
-  "url": "google.com",
-  "status": "LEARNING"
+  "title": "HTML",
+  "description": "html ",
+  "url": "https://www.freecodecamp.org/",
+  "status": "TO LEARN"
 }
 
 ###
 GET http://localhost:3456/api/posts
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU3ZmQwNDQxMDQ4NjczNzIwODczNzYiLCJpYXQiOjE2ODUxNTYyMDd9.0JMs0RK4dRdJpHDMG1nePAW_dc1b1HCo4VmltxVun6A
 
 ###
 PUT http://localhost:3456/api/posts/6459b2399b484b154a2b3ea3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2ZDQ1NTY3MmU0MmM2MmZiYWM4Y2YiLCJpYXQiOjE2ODM0MTI0NjZ9.cq3PARsFnXjlCux0nsI8eZIgu7OzW-IyQlbbwVcHF70
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU3ZmQwNDQxMDQ4NjczNzIwODczNzYiLCJpYXQiOjE2ODUxNTYyMDd9.0JMs0RK4dRdJpHDMG1nePAW_dc1b1HCo4VmltxVun6A
 
 {
   "title": "lesson 2",
@@ -53,4 +54,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2Z
 ###
 DELETE http://localhost:3456/api/posts/6459b2399b484b154a2b3ea3
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU2ZDQ1NTY3MmU0MmM2MmZiYWM4Y2YiLCJpYXQiOjE2ODM0MTI0NjZ9.cq3PARsFnXjlCux0nsI8eZIgu7OzW-IyQlbbwVcHF70
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU3ZmQwNDQxMDQ4NjczNzIwODczNzYiLCJpYXQiOjE2ODUxNTYyMDd9.0JMs0RK4dRdJpHDMG1nePAW_dc1b1HCo4VmltxVun6A
