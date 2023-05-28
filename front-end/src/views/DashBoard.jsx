@@ -3,6 +3,7 @@ import { Button, Card, Col, Row, Spinner } from "react-bootstrap";
 import { usePosts } from "../contexts/PostContext";
 import { useAuth } from "../contexts/AuthContext";
 import { SinglePost } from "../components/posts/SinglePost";
+import { AddPostModal } from "../components/posts/AddPostModal";
 
 export function DashBoard() {
   const { authState } = useAuth();
@@ -38,12 +39,15 @@ export function DashBoard() {
   }
 
   return (
-    <Row className="row-cols-1 row-cols-3 g-4 mx-auto mt-3">
-      {posts.map((post) => (
-        <Col key={post._id} className="my-2">
-          <SinglePost post={post} />
-        </Col>
-      ))}
-    </Row>
+    <>
+      <Row className="row-cols-1 row-cols-3 g-4 mx-auto mt-3">
+        {posts.map((post) => (
+          <Col key={post._id} className="my-2">
+            <SinglePost post={post} />
+          </Col>
+        ))}
+      </Row>
+      <AddPostModal />
+    </>
   );
 }

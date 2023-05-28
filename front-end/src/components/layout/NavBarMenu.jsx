@@ -21,7 +21,7 @@ function NavBarMenu() {
             About
           </Nav.Link>
         </Nav>
-        <Nav className="auto ms-auto">
+        <Nav className="auto ms-auto me-4">
           <Nav.Link className="fw-bolder text-white" disabled>
             {authState.user && `Welcome ${authState.user.username}`}
           </Nav.Link>
