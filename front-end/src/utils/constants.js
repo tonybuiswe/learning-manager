@@ -5,7 +5,8 @@ export const apiUrl =
 
 export const LOGIN_TOKEN = "LOGIN_TOKEN";
 
-export const PostFetched = {
-  SUCCESS: "SUCCESS",
-  FAIL: "FAIL",
+export const POST_ENUM = {
+  FETCH_SUCCESS: "FETCH_SUCCESS",
+  FETCH_FAIL: "FETCH_FAIL",
+  ADD_SUCCESS: "ADD_SUCCESS",
 };

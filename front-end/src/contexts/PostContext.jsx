@@ -1,7 +1,7 @@
 import axios from "axios";
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { postReducer } from "../reducers/postReducer";
-import { apiUrl, PostFetched } from "../utils/constants";
+import { apiUrl, POST_ENUM } from "../utils/constants";
 
 const PostContext = createContext();
 export const PostContextProvider = ({ children }) => {
@@ -10,6 +10,15 @@ export const PostContextProvider = ({ children }) => {
     postsLoading: true,
   });
 
+  const [isShowToast, setIsShowToast] = useState({
+    show: false,
+    message: "",
+    type: null,
+  });
+
+  const [isAddPostModalVisible, setIsAddPostModalVisible] = useState(false);
+  const openAddPostModal = () => setIsAddPostModalVisible(true);
+  const closeAddPostModal = () => setIsAddPostModalVisible(false);
   // Get all posts
 
   const getPosts = async () => {
@@ -17,18 +26,49 @@ export const PostContextProvider = ({ children }) => {
       const response = await axios.get(`${apiUrl}/posts`);
       if (response.data.success) {
         dispatch({
-          type: PostFetched.SUCCESS,
+          type: POST_ENUM.FETCH_SUCCESS,
           payload: response.data.posts,
         });
       }
     } catch (e) {
       dispatch({
-        type: PostFetched.FAIL,
+        type: POST_ENUM.FETCH_FAIL,
       });
     }
   };
+
+  const addPost = async (newPost) => {
+    try {
+      const response = await axios.post(`${apiUrl}/posts`, newPost);
+      if (response.data.success) {
+        dispatch({
+          type: POST_ENUM.ADD_SUCCESS,
+          payload: response.data.post,
+        });
+
+        return response.data;
+      }
+    } catch (e) {
+      return e.response.data
+        ? e.response.data
+        : {
+            success: false,
+            message: "Server error",
+          };
+    }
+  };
+
+  const postContextValue = {
+    postState,
+    getPosts,
+    addPost,
+    isAddPostModalVisible,
+    openAddPostModal,
+    closeAddPostModal,
+  };
+
   return (
-    <PostContext.Provider value={{ postState, getPosts }}>
+    <PostContext.Provider value={postContextValue}>
       {children}
     </PostContext.Provider>
   );

@@ -23,6 +23,11 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:3456/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU3ZmQwNDQxMDQ4NjczNzIwODczNzYiLCJpYXQiOjE2ODUxNTYyMDd9.0JMs0RK4dRdJpHDMG1nePAW_dc1b1HCo4VmltxVun6A
+
+###
 POST http://localhost:3456/api/posts
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU3ZmQwNDQxMDQ4NjczNzIwODczNzYiLCJpYXQiOjE2ODUxNTYyMDd9.0JMs0RK4dRdJpHDMG1nePAW_dc1b1HCo4VmltxVun6A
@@ -33,11 +38,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU3Z
   "url": "https://www.freecodecamp.org/",
   "status": "TO LEARN"
 }
-
-###
-GET http://localhost:3456/api/posts
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDU3ZmQwNDQxMDQ4NjczNzIwODczNzYiLCJpYXQiOjE2ODUxNTYyMDd9.0JMs0RK4dRdJpHDMG1nePAW_dc1b1HCo4VmltxVun6A
 
 ###
 PUT http://localhost:3456/api/posts/6459b2399b484b154a2b3ea3
