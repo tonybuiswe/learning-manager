@@ -10,8 +10,8 @@ export const PostContextProvider = ({ children }) => {
     postsLoading: true,
   });
 
-  const [isShowToast, setIsShowToast] = useState({
-    show: false,
+  const [toast, setToast] = useState({
+    isShow: false,
     message: "",
     type: null,
   });
@@ -65,6 +65,8 @@ export const PostContextProvider = ({ children }) => {
     isAddPostModalVisible,
     openAddPostModal,
     closeAddPostModal,
+    toast,
+    setToast,
   };
 
   return (

@@ -18,8 +18,7 @@ import { PlusCircleFill } from "react-bootstrap-icons";
 export function DashBoard() {
   const { authState } = useAuth();
   const { user } = authState;
-  const { postState, getPosts, openAddPostModal, closeAddPostModal } =
-    usePosts();
+  const { postState, getPosts, openAddPostModal, toast, setToast } = usePosts();
   const { posts, postsLoading } = postState;
 
   useEffect(() => {
@@ -45,7 +44,9 @@ export function DashBoard() {
               <Card.Text>
                 Click the button below to track your first skill to learn
               </Card.Text>
-              <Button variant="primary"> Start Learning </Button>
+              <Button variant="primary" onClick={openAddPostModal}>
+                Start Learning By Adding Your First Study Card
+              </Button>
             </Card.Body>
           </Card>
           <AddPostModal />
@@ -78,7 +79,7 @@ export function DashBoard() {
 
       <AddPostModal />
       <Toast
-        show={true}
+        show={toast.isShow}
         style={{
           position: "fixed",
           top: "20%",
@@ -86,10 +87,20 @@ export function DashBoard() {
           width: "fit-content",
           opacity: "95%",
         }}
-        className="bg-primary text-white"
+        className={`bg-${toast.type} text-white`}
+        onClose={() =>
+          setToast({
+            isShow: false,
+            message: "",
+            type: null,
+          })
+        }
+        delay={3000}
+        autohide
+        animation={false}
       >
         <Toast.Body>
-          <strong>This is my toast</strong>
+          <strong>{toast.message}</strong>
         </Toast.Body>
       </Toast>
     </>

@@ -18,7 +18,7 @@ export const SinglePost = ({ post }) => {
           <Row>
             <Col>
               <p className="post-title">{title}</p>
-              <Badge pill variant={progressColor}>
+              <Badge pill className={`bg-${progressColor}`}>
                 {status}
               </Badge>
             </Col>

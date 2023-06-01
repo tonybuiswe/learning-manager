@@ -3,7 +3,8 @@ import { usePosts } from "../../contexts/PostContext";
 import { useEffect, useState } from "react";
 
 export const AddPostModal = () => {
-  const { isAddPostModalVisible, closeAddPostModal, addPost } = usePosts();
+  const { isAddPostModalVisible, closeAddPostModal, addPost, setToast } =
+    usePosts();
 
   // States
   const [postValue, setPostValue] = useState({
@@ -33,6 +34,11 @@ export const AddPostModal = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const { success, message } = await addPost(postValue);
+    setToast({
+      isShow: true,
+      message: message,
+      type: success ? "success" : "danger",
+    });
     closeAddPostModal();
     resetPostValue();
   };
