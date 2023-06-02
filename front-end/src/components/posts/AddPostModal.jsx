@@ -46,7 +46,7 @@ export const AddPostModal = () => {
   return (
     <Modal show={isAddPostModalVisible} onHide={closeAddPostModal}>
       <Modal.Header closeButton>
-        <Modal.Title>What do you want to learn</Modal.Title>
+        <Modal.Title>What do you want to track</Modal.Title>
       </Modal.Header>
       <Form>
         <Modal.Body>

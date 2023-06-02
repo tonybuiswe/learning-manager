@@ -23,7 +23,7 @@ export function DashBoard() {
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [getPosts]);
 
   const getDashBoard = () => {
     if (!user || postsLoading) {
@@ -71,6 +71,7 @@ export function DashBoard() {
       <OverlayTrigger
         placement="left"
         overlay={<Tooltip>Add new post</Tooltip>}
+        onHide={null}
       >
         <Button className="btn-floating" onClick={openAddPostModal}>
           <PlusCircleFill width={60} height={60} className="text-primary" />

@@ -58,10 +58,27 @@ export const PostContextProvider = ({ children }) => {
     }
   };
 
+  const deletePost = async (postId) => {
+    console.log("this");
+    console.log(this);
+    try {
+      const response = await axios.delete(`${apiUrl}/posts/${postId}`);
+      if (response.data.success) {
+        dispatch({
+          type: POST_ENUM.DELETE_SUCCESS,
+          payload: postId,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const postContextValue = {
     postState,
     getPosts,
     addPost,
+    deletePost,
     isAddPostModalVisible,
     openAddPostModal,
     closeAddPostModal,
