@@ -14,6 +14,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { SinglePost } from "../components/posts/SinglePost";
 import { AddPostModal } from "../components/posts/AddPostModal";
 import { PlusCircleFill } from "react-bootstrap-icons";
+import { UpdatePostModal } from "../components/posts/UpdatePostModal";
 
 export function DashBoard() {
   const { authState } = useAuth();
@@ -23,7 +24,7 @@ export function DashBoard() {
 
   useEffect(() => {
     getPosts();
-  }, [getPosts]);
+  }, []);
 
   const getDashBoard = () => {
     if (!user || postsLoading) {
@@ -77,7 +78,7 @@ export function DashBoard() {
           <PlusCircleFill width={60} height={60} className="text-primary" />
         </Button>
       </OverlayTrigger>
-
+      <UpdatePostModal />
       <AddPostModal />
       <Toast
         show={toast.isShow}

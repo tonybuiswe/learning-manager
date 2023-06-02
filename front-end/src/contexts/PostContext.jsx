@@ -6,6 +6,7 @@ import { apiUrl, POST_ENUM } from "../utils/constants";
 const PostContext = createContext();
 export const PostContextProvider = ({ children }) => {
   const [postState, dispatch] = useReducer(postReducer, {
+    postToEdit: null,
     posts: [],
     postsLoading: true,
   });
@@ -17,6 +18,7 @@ export const PostContextProvider = ({ children }) => {
   });
 
   const [isAddPostModalVisible, setIsAddPostModalVisible] = useState(false);
+
   const openAddPostModal = () => setIsAddPostModalVisible(true);
   const closeAddPostModal = () => setIsAddPostModalVisible(false);
   // Get all posts
@@ -74,6 +76,42 @@ export const PostContextProvider = ({ children }) => {
     }
   };
 
+  const updatePost = async (updatedPost) => {
+    try {
+      const response = await axios.put(
+        `${apiUrl}/posts/${updatedPost._id}`,
+        updatedPost
+      );
+      if (response.data.success) {
+        dispatch({
+          type: POST_ENUM.UPDATE_SUCCESS,
+          payload: response.data.post,
+        });
+
+        return response.data;
+      }
+    } catch (e) {
+      return e.response.data
+        ? e.response.data
+        : {
+            success: false,
+            message: "Server error",
+          };
+    }
+  };
+
+  const editPost = (postId) => {
+    const post = postState.posts.find((post) => post._id === postId);
+    if (post) {
+      dispatch({ type: POST_ENUM.EDIT, payload: post });
+    }
+  };
+
+  const noEditPost = () =>
+    dispatch({
+      type: POST_ENUM.NO_EDIT,
+    });
+
   const postContextValue = {
     postState,
     getPosts,
@@ -84,6 +122,9 @@ export const PostContextProvider = ({ children }) => {
     closeAddPostModal,
     toast,
     setToast,
+    editPost,
+    updatePost,
+    noEditPost,
   };
 
   return (

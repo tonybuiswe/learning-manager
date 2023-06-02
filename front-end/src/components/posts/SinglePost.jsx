@@ -11,6 +11,7 @@ export const SinglePost = ({ post }) => {
 
     return "danger";
   })();
+
   return (
     <Card className="shadow" border={progressColor}>
       <Card.Body>

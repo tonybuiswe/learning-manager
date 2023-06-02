@@ -24,8 +24,29 @@ export const postReducer = (state, action) => {
     case POST_ENUM.DELETE_SUCCESS:
       return {
         ...state,
-
         posts: state.posts.filter((p) => p._id !== payload),
+      };
+    case POST_ENUM.UPDATE_SUCCESS:
+      const newPosts = state.posts.map((post) =>
+        post._id === payload._id ? payload : post
+      );
+
+      return {
+        ...state,
+        postToEdit: null,
+        posts: newPosts,
+      };
+
+    case POST_ENUM.EDIT:
+      return {
+        ...state,
+        postToEdit: payload,
+      };
+
+    case POST_ENUM.NO_EDIT:
+      return {
+        ...state,
+        postToEdit: null,
       };
     default:
       return state;
