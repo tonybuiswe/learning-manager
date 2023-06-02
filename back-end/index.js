@@ -21,10 +21,10 @@ const connectDB = async () => {
 };
 
 connectDB();
-const PORT = 3456;
+const PORT = process.env.PORT || 3456;
 const app = express();
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 app.get("/", (req, res) => res.send("Hello World"));
 app.use("/api/auth", authRouter);
 app.use("/api/posts", postRouter);
