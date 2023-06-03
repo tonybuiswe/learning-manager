@@ -1,5 +1,11 @@
 import axios from "axios";
-import { createContext, useReducer, useEffect, useContext } from "react";
+import {
+  createContext,
+  useReducer,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 import { apiUrl, LOGIN_TOKEN } from "../utils/constants";
 import { authReducer } from "../reducers/authReducer";
 import setAuthToken from "../utils/setAuthToken";
@@ -29,7 +35,7 @@ export const AuthContextProvider = ({ children }) => {
     });
   };
 
-  const authenticateUser = async () => {
+  const authenticateUser = useCallback(async () => {
     if (localStorage[LOGIN_TOKEN]) {
       setAuthToken(localStorage[LOGIN_TOKEN]);
     }
@@ -48,11 +54,11 @@ export const AuthContextProvider = ({ children }) => {
     } catch (e) {
       logOutUser();
     }
-  };
+  }, []);
 
   useEffect(() => {
     authenticateUser();
-  }, []);
+  }, [authenticateUser]);
 
   //   Login
   const loginUser = async (userForm) => {

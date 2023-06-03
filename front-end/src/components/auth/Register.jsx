@@ -23,7 +23,7 @@ export const Register = ({ isRegister }) => {
 
   const register = async (event) => {
     event.preventDefault();
-    if (password != confirmedPassword) {
+    if (password !== confirmedPassword) {
       setAlert({ type: "danger", message: "Passwords do not match" });
       return;
     }

@@ -1,5 +1,11 @@
 import axios from "axios";
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useReducer,
+  useState,
+} from "react";
 import { postReducer } from "../reducers/postReducer";
 import { apiUrl, POST_ENUM } from "../utils/constants";
 
@@ -23,7 +29,7 @@ export const PostContextProvider = ({ children }) => {
   const closeAddPostModal = () => setIsAddPostModalVisible(false);
   // Get all posts
 
-  const getPosts = async () => {
+  const getPosts = useCallback(async () => {
     try {
       const response = await axios.get(`${apiUrl}/posts`);
       if (response.data.success) {
@@ -37,7 +43,7 @@ export const PostContextProvider = ({ children }) => {
         type: POST_ENUM.FETCH_FAIL,
       });
     }
-  };
+  }, []);
 
   const addPost = async (newPost) => {
     try {

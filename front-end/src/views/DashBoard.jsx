@@ -24,7 +24,7 @@ export function DashBoard() {
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [getPosts]);
 
   const getDashBoard = () => {
     if (!user || postsLoading) {

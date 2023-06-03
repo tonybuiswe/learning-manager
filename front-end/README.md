@@ -73,3 +73,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - [ ] Regex Password
 - [ ] Style issue
 - [ ] Error boundary
+- [ ] Show Password option

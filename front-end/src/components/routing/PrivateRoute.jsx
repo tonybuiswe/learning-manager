@@ -12,7 +12,7 @@ function PrivateRoute() {
     if (!isAuthenticated) {
       navigate("/login");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   return (
     <>
